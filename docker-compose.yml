@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  comfyui:
+    build: .
+    image: comfyui:1.0.0
+    ports:
+      - "8188:8188"
+    volumes:
+      - D:\wsl\docker\comfy\ComfyUI:/home/ComfyUI
+    container_name: comfyui
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
